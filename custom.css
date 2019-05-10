@@ -1,0 +1,32 @@
+.slider-range-wrapper {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .slider-range-wrapper {
+    display: block;
+    margin-bottom: 1rem;
+    padding-top: .5rem;
+  }
+  .slider-range-wrapper p {
+    margin-bottom: .5rem;
+    text-align: right;
+  }
+  .slider-range-wrapper input {
+    border: none;
+    color: #5d5d5d;
+    font-weight: bold;
+    outline: none;
+    width: 66%;
+  }
+  .slider-range-wrapper #submitprice {
+    width: 20%;
+  }
+  .slider-range-wrapper .btn {
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+  /* Uncomment the styles below to hide the default price filter view */
+  /*#search_filters .facet .luxt-facet-price {
+    display: none;
+  }*/
+}
