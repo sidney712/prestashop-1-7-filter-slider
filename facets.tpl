@@ -177,6 +177,20 @@
 
   <script type="text/javascript">
     $('#search_filters').ready(function() {
+      var langShop = prestashop.language.iso_code;
+      switch (langShop) {
+        case 'fr':
+          langPrice = 'Prix';
+          break;
+        case 'ru':
+          langPrice = 'Цена';
+          break;
+        case 'uk':
+          langPrice = 'Ціна';
+          break;
+        default:
+          langPrice = 'Price';
+      }
       var pageURLIndex = -1;
       var sliderPrice = function() {
         var minValue = $('#slider-range').data('min-value');
@@ -187,15 +201,15 @@
           max: maxValue,
           values: [minValue, maxValue],
           slide: function(event, ui) {
-            $('#amount').val(ui.values[0] + ' ₴ - ' + ui.values[1] + ' ₴');
+            $('#amount').val(ui.values[0] + ' ' + prestashop.currency.sign + ' - ' + ui.values[1] + ' ' + prestashop.currency.sign);
           },
           stop: function(event, ui) {
             pageURLIndex = window.location.href.indexOf("?");
-            $('#amount').val(ui.values[0] + ' ₴ - ' + ui.values[1] + ' ₴');
-            $('#submitprice').attr("href", window.location.href + ((pageURLIndex === -1) ? '?q=' : '/') + 'Цена-₴-' + $('#slider-range').slider('values', 0) + '-' + $('#slider-range').slider('values', 1));
+            $('#amount').val(ui.values[0] + ' ' + prestashop.currency.sign + ' - ' + ui.values[1] + ' ' + prestashop.currency.sign);
+            $('#submitprice').attr("href", window.location.href + ((pageURLIndex === -1) ? '?q=' : '/') + langPrice + '-' + prestashop.currency.sign + '-' + $('#slider-range').slider('values', 0) + '-' + $('#slider-range').slider('values', 1));
           }
         });
-        $('#amount').val($('#slider-range').slider('values', 0) + ' ₴ - ' + $(' #slider-range').slider('values', 1) + ' ₴');
+        $('#amount').val($('#slider-range').slider('values', 0) + ' ' + prestashop.currency.sign + ' - ' + $(' #slider-range').slider('values', 1) + ' ' + prestashop.currency.sign);
       };
       sliderPrice();
     });
